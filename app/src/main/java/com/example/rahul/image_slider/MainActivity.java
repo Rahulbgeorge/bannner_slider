@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });*/
-        FragmentManager mngr=getSupportFragmentManager();
+       /* FragmentManager mngr=getSupportFragmentManager();
         Slider frag=(Slider) mngr.findFragmentById(R.id.testfragment);
         int imageList[]={R.drawable.poster1,R.drawable.poster2,R.drawable.poster3};
-        frag.setDrawableImages(imageList);
+        frag.setDrawableImages(imageList);*/
     }
 }
