@@ -16,6 +16,8 @@ import android.widget.ImageView;
  */
 public class BlankFragment extends Fragment {
 
+    int image;
+    ImageView.ScaleType scale=ImageView.ScaleType.CENTER_CROP;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -28,10 +30,11 @@ public class BlankFragment extends Fragment {
         // Inflate the layout for this fragment
         Log.e("blank frag","fragment triggered");
         View view=inflater.inflate(R.layout.fragment_blank,container,false);
-        int image=getArguments().getInt("image");
-        Log.e("image added","added image is"+image);
+//        int image=getArguments().getInt("image");
+//        Log.e("image added","added image is"+image);
         ImageView iv=view.findViewById(R.id.imageView);
-         iv.setImageResource(image);
+         iv.setImageResource(this.image);
+         iv.setScaleType(scale);
 
         //View v=inflater.inflate(R.layout.circular_button,null,false);
 
@@ -43,5 +46,14 @@ public class BlankFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void setRawImageWithScale(int image, ImageView.ScaleType type)
+    {
+        this.image=image;
+        this.scale=type;
+    }
+
+    public void setRawImage(int image)
+    {this.image=image;}
 
 }
