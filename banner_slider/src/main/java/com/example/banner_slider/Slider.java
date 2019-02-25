@@ -6,16 +6,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Slider.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Slider#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Slider extends Fragment {
 
     public Slider() {
@@ -23,9 +19,11 @@ public class Slider extends Fragment {
     }
 
 
-
+    ArrayList<Integer> image;
+    ArrayList<ImageView.ScaleType> scale;
     ViewPager pager;
     DeliverySliderAdapter adapter;
+    boolean withScale=false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,7 +36,26 @@ public class Slider extends Fragment {
     public void setDrawableImages(int imageList[])
     {
         adapter=new DeliverySliderAdapter(getFragmentManager(),imageList);
+    }
+
+    public Slider load()
+    {
+        if(withScale)
+        {adapter=new DeliverySliderAdapter(getFragmentManager(),this.image,this.scale);
+        }
+
         pager.setAdapter(adapter);
+        return this;
+    }
+    public Slider setDrawableImageWithScale(int image, ImageView.ScaleType type)
+    {
+        withScale=true;
+        if(this.image==null)
+        {this.image=new ArrayList<Integer>();
+        this.scale=new ArrayList<ImageView.ScaleType>();}
+        this.image.add(image);
+        this.scale.add(type);
+        return this;
     }
 
 
